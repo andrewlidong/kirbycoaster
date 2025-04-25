@@ -1,12 +1,10 @@
-# Kirby's Whimsical Roller Coaster 🎢
+# Kirby Coaster 🎢
 
 A 3D roller coaster simulation. Built with Three.js and modern web technologies.
 
 ## 🌟 Features
 
 - Interactive 3D roller coaster with physics simulation
-- Kirby-themed cart with cute animations
-- Magical star trail effects
 - Dynamic camera following
 - Start/Stop controls
 - Whimsical environment with floating clouds and stars
