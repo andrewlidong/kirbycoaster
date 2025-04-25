@@ -13,7 +13,10 @@ export default defineConfig({
     }
   },
   optimizeDeps: {
-    include: ['three']
+    force: true,
+    entries: [
+      'js/main.js'
+    ]
   },
   resolve: {
     alias: {
