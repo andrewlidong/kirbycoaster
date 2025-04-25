@@ -1,6 +1,7 @@
 {
-  "name": "roller_coaster",
-  "version": "1.0.0",
+  "name": "roller-coaster",
+  "private": true,
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -15,6 +16,6 @@
     "vite": "^5.0.0"
   },
   "dependencies": {
-    "three": "^0.176.0"
+    "three": "^0.162.0"
   }
 }
