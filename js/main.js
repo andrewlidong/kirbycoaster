@@ -1,7 +1,8 @@
-import * as THREE from 'three';
+import * as THREE from '/node_modules/three/build/three.module.js';
 import { Track } from './modules/Track.js';
 import { Cart } from './modules/Cart.js';
 import { Environment } from './modules/Environment.js';
+import { UI } from './modules/UI.js';
 
 // Scene setup
 const scene = new THREE.Scene();
@@ -77,6 +78,9 @@ const track = new Track(scene);
 
 // Create cart
 const cart = new Cart(scene, track);
+
+// Create UI overlay
+const ui = new UI(cart);
 
 // Camera follow settings
 const cameraOffset = new THREE.Vector3(0, 10, 25); // Adjusted camera offset
@@ -157,6 +161,9 @@ window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
+    if (ui.sketch) {
+        ui.sketch.windowResized();
+    }
 });
 
 // Start animation

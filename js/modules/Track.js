@@ -42,7 +42,12 @@ export class Track {
         this.spline = new THREE.CatmullRomCurve3(points);
         this.spline.closed = true;
 
-        // Create visual elements
+        this.createMainTrack();
+        this.createRails();
+        this.createSupports();
+    }
+
+    createMainTrack() {
         const tubeGeometry = new THREE.TubeGeometry(
             this.spline,
             200,    // tubular segments
@@ -51,7 +56,6 @@ export class Track {
             true    // closed
         );
 
-        // Kirby-style pastel colors
         const trackMaterial = new THREE.MeshPhongMaterial({
             color: 0xffb7dd,  // Pastel pink
             specular: 0xffffff,
@@ -59,13 +63,10 @@ export class Track {
             side: THREE.DoubleSide
         });
 
-        const mainTrack = new THREE.Mesh(tubeGeometry, trackMaterial);
-        mainTrack.castShadow = true;
-        mainTrack.receiveShadow = true;
-        this.scene.add(mainTrack);
-
-        // Add decorative rails
-        this.createRails();
+        this.mainTrack = new THREE.Mesh(tubeGeometry, trackMaterial);
+        this.mainTrack.castShadow = true;
+        this.mainTrack.receiveShadow = true;
+        this.scene.add(this.mainTrack);
     }
 
     createRails() {
@@ -123,6 +124,66 @@ export class Track {
         rightRail.castShadow = true;
         this.scene.add(leftRail);
         this.scene.add(rightRail);
+    }
+
+    createSupports() {
+        const supportMaterial = new THREE.MeshPhongMaterial({
+            color: 0xcccccc,  // Light gray
+            specular: 0xffffff,
+            shininess: 30
+        });
+
+        // Create supports every few segments
+        const numSupports = 40;
+        for (let i = 0; i < numSupports; i++) {
+            const t = i / numSupports;
+            const point = this.spline.getPointAt(t);
+            const tangent = this.spline.getTangentAt(t);
+
+            // Only create supports above a certain height
+            if (point.y > 5.5) {
+                // Create main support pillar
+                const pillarHeight = point.y - 0.5; // Subtract small amount for ground intersection
+                const pillarGeometry = new THREE.CylinderGeometry(0.3, 0.5, pillarHeight, 8);
+                const pillar = new THREE.Mesh(pillarGeometry, supportMaterial);
+
+                // Position the pillar
+                pillar.position.set(point.x, pillarHeight / 2, point.z);
+                pillar.castShadow = true;
+                pillar.receiveShadow = true;
+
+                // Create cross support if the track is high enough
+                if (pillarHeight > 10) {
+                    const crossHeight = pillarHeight * 0.7;
+                    const crossGeometry = new THREE.CylinderGeometry(0.2, 0.2, pillarHeight * 0.4, 8);
+                    const cross = new THREE.Mesh(crossGeometry, supportMaterial);
+
+                    // Calculate angle for cross support
+                    const angle = Math.atan2(tangent.z, tangent.x);
+                    cross.rotation.x = Math.PI / 4;
+                    cross.rotation.y = angle;
+                    cross.position.set(point.x, crossHeight, point.z);
+
+                    cross.castShadow = true;
+                    this.scene.add(cross);
+
+                    // Add a second cross support perpendicular to the first
+                    const cross2 = cross.clone();
+                    cross2.rotation.y = angle + Math.PI / 2;
+                    this.scene.add(cross2);
+                }
+
+                // Create base for the pillar
+                const baseGeometry = new THREE.CylinderGeometry(0.8, 0.8, 0.5, 8);
+                const base = new THREE.Mesh(baseGeometry, supportMaterial);
+                base.position.set(point.x, 0.25, point.z);
+                base.castShadow = true;
+                base.receiveShadow = true;
+
+                this.scene.add(pillar);
+                this.scene.add(base);
+            }
+        }
     }
 
     getPointAtT(t) {
