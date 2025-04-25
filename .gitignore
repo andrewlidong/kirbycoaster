@@ -1,0 +1,55 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependencies
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Build output
+dist/
+build/
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# Temporary files
+*.tmp
+*.temp
+.cache
+
+# Debug logs
+debug.log*
+
+# Local development
+*.dev.js
+*.dev.jsx
+*.dev.ts
+*.dev.tsx
+
+# System Files
+.DS_Store
+Thumbs.db
