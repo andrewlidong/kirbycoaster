@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+import * as THREE from 'https://unpkg.com/three@0.162.0/build/three.module.js';
 
 export class Environment {
     constructor(scene) {
@@ -6,6 +6,7 @@ export class Environment {
         this.createGround();
         this.createClouds();
         this.createDecorations();
+        this.createGiantKirby();
     }
 
     createGround() {
@@ -102,11 +103,86 @@ export class Environment {
         }
     }
 
+    createGiantKirby() {
+        // Create Kirby group
+        this.kirby = new THREE.Group();
+
+        // Main body (sphere)
+        const bodyGeometry = new THREE.SphereGeometry(15, 32, 32);
+        const bodyMaterial = new THREE.MeshPhongMaterial({
+            color: 0xffb7dd,  // Kirby pink
+            specular: 0xffffff,
+            shininess: 30
+        });
+        const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+        this.kirby.add(body);
+
+        // Eyes
+        const eyeGeometry = new THREE.SphereGeometry(2, 16, 16);
+        const eyeMaterial = new THREE.MeshPhongMaterial({
+            color: 0x000000  // Black
+        });
+
+        // Left eye
+        const leftEye = new THREE.Mesh(eyeGeometry, eyeMaterial);
+        leftEye.position.set(-4, 4, 13);
+        leftEye.scale.y = 1.5;
+        this.kirby.add(leftEye);
+
+        // Right eye
+        const rightEye = new THREE.Mesh(eyeGeometry, eyeMaterial);
+        rightEye.position.set(4, 4, 13);
+        rightEye.scale.y = 1.5;
+        this.kirby.add(rightEye);
+
+        // Cheeks
+        const cheekGeometry = new THREE.SphereGeometry(2.4, 16, 16);
+        const cheekMaterial = new THREE.MeshPhongMaterial({
+            color: 0xff9ecd,  // Slightly darker pink
+            specular: 0xffffff,
+            shininess: 20
+        });
+
+        // Left cheek
+        const leftCheek = new THREE.Mesh(cheekGeometry, cheekMaterial);
+        leftCheek.position.set(-10, -2, 10);
+        this.kirby.add(leftCheek);
+
+        // Right cheek
+        const rightCheek = new THREE.Mesh(cheekGeometry, cheekMaterial);
+        rightCheek.position.set(10, -2, 10);
+        this.kirby.add(rightCheek);
+
+        // Position Kirby in the scene
+        this.kirby.position.set(-80, 60, -100);
+        this.scene.add(this.kirby);
+
+        // Add a point light to highlight Kirby
+        const kirbyLight = new THREE.PointLight(0xffffff, 1, 200);
+        kirbyLight.position.set(-80, 80, -80);
+        this.scene.add(kirbyLight);
+    }
+
     update(cartPosition) {
-        // Animate clouds
+        // Update clouds
         this.clouds.children.forEach((cloud, i) => {
             cloud.position.x += Math.sin(Date.now() * 0.001 + i) * 0.02;
             cloud.position.y += Math.cos(Date.now() * 0.001 + i) * 0.01;
         });
+
+        // Update Kirby's movement
+        if (this.kirby) {
+            const time = Date.now() * 0.001;
+
+            // Floating movement with larger range
+            this.kirby.position.y = 60 + Math.sin(time * 0.5) * 10;
+            this.kirby.position.x = -80 + Math.sin(time * 0.3) * 30;
+            this.kirby.position.z = -100 + Math.cos(time * 0.4) * 30;
+
+            // Gentle rotation with more movement
+            this.kirby.rotation.y = Math.sin(time * 0.5) * 0.3;
+            this.kirby.rotation.x = Math.sin(time * 0.3) * 0.2;
+            this.kirby.rotation.z = Math.cos(time * 0.4) * 0.2;
+        }
     }
 }

@@ -1,4 +1,5 @@
-import p5 from 'p5';
+// Import p5.js from CDN for production, local for development
+import p5 from 'https://unpkg.com/p5@1.11.5/lib/p5.min.js';
 
 export class UI {
     constructor(cart) {
@@ -6,17 +7,18 @@ export class UI {
         this.sketch = new p5((p) => {
             p.setup = () => this.setup(p);
             p.draw = () => this.draw(p);
+            p.windowResized = () => this.windowResized(p);
         });
     }
 
     setup(p) {
         // Create canvas that overlays the 3D scene
-        const canvas = p.createCanvas(p.windowWidth, p.windowHeight);
-        canvas.style('position', 'fixed');
-        canvas.style('top', '0');
-        canvas.style('left', '0');
-        canvas.style('pointer-events', 'none');
-        canvas.style('z-index', '100');
+        this.canvas = p.createCanvas(p.windowWidth, p.windowHeight);
+        this.canvas.style('position', 'fixed');
+        this.canvas.style('top', '0');
+        this.canvas.style('left', '0');
+        this.canvas.style('pointer-events', 'none');
+        this.canvas.style('z-index', '100');
     }
 
     draw(p) {

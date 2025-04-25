@@ -10,11 +10,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html')
       },
-      output: {
-        manualChunks: {
-          'vendor': ['three', 'p5']
-        }
-      }
+      external: ['https://unpkg.com/three@0.162.0/build/three.module.js', 'https://unpkg.com/p5@1.11.5/lib/p5.min.js']
     }
   },
   optimizeDeps: {
@@ -27,6 +23,8 @@ export default defineConfig({
     }
   },
   server: {
-    open: true
+    hmr: {
+      timeout: 5000
+    }
   }
 });

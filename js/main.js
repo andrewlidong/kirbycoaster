@@ -1,4 +1,5 @@
-import * as THREE from 'three';
+// Import Three.js from CDN for production, local for development
+import * as THREE from 'https://unpkg.com/three@0.162.0/build/three.module.js';
 import { Track } from './modules/Track.js';
 import { Cart } from './modules/Cart.js';
 import { Environment } from './modules/Environment.js';
@@ -158,11 +159,14 @@ function animate() {
 
 // Handle window resize
 window.addEventListener('resize', () => {
+    // Update Three.js camera and renderer
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
-    if (ui.sketch) {
-        ui.sketch.windowResized();
+
+    // Update p5.js canvas if UI exists
+    if (ui && ui.sketch && ui.sketch._setupDone) {
+        ui.windowResized(ui.sketch);
     }
 });
 
