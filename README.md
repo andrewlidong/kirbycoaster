@@ -17,45 +17,49 @@ A 3D roller coaster simulation. Built with Three.js and modern web technologies.
 - **JavaScript (ES6+)** - Core programming language
 - **HTML5/CSS3** - Structure and styling
 
-## 🚀 (TODOs)
+## 🚀 Future Features (TODOs)
 
-### Gameplay Elements
-- [ ] Multiple track layouts to choose from
-- [ ] Speed boost powerups
-- [ ] Score system based on track completion time
-- [ ] Multiple cart character options (different Kirby forms)
+### Track Design
+- [ ] Multiple track layouts (loops, corkscrews, helixes)
+- [ ] Track editor with drag-and-drop segments
+- [ ] Support for banked turns and inversions
+- [ ] Height and speed indicators
+- [ ] Track validation for physically possible layouts
 
-### Visual Enhancements
-- [ ] Day/night cycle with dynamic lighting
-- [ ] Weather effects (rainbow mode, gentle rain)
-- [ ] More particle effects (sparkles, rainbows)
-- [ ] Track decoration themes
+### Physics and Movement
+- [ ] Advanced physics simulation (g-forces, friction)
+- [ ] Chain lift mechanics for climbs
+- [ ] Realistic acceleration/deceleration
+- [ ] Support for multiple carts with proper spacing
+- [ ] Collision detection between carts
 
-### Interaction Improvements
-- [ ] Track editor mode
-- [ ] Camera control options
-- [ ] Speed control slider
+### Ride Experience
+- [ ] First-person ride view
+- [ ] Multiple camera angles (side, top, follow)
+- [ ] Speed control system
+- [ ] Lap timing and statistics
+- [ ] Support for multiple riders
+
+### Visual Effects
+- [ ] Dynamic lighting based on time of day
+- [ ] Weather effects (rain, fog, snow)
+- [ ] Track support structure generation
+- [ ] Station and platform design
+- [ ] Environmental theming options
+
+### User Interface
+- [ ] Track building tools
+- [ ] Physics parameter controls
+- [ ] Real-time statistics display
 - [ ] VR support
 - [ ] Mobile touch controls
 
-### Physics and Movement
-- [ ] Loop-the-loop physics improvements
-- [ ] Multi-cart support with collision
-- [ ] Cart customization options
-- [ ] Jump mechanics
-
-### Audio
-- [ ] Kirby-themed background music
-- [ ] Sound effects for movement
-- [ ] Environmental ambient sounds
-- [ ] Interactive music that changes with speed
-
 ### Technical Improvements
-- [ ] Performance optimizations for mobile
+- [ ] Performance optimization for complex tracks
 - [ ] Save/load track designs
-- [ ] Multiplayer support
-- [ ] Better shadow rendering
-- [ ] Level progression system
+- [ ] Support for multiple simultaneous rides
+- [ ] Better shadow and lighting effects
+- [ ] Track smoothing algorithms
 
 ## 🎮 How to Run
 
