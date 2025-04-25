@@ -1,5 +1,5 @@
 // Import Three.js from CDN for production, local for development
-import * as THREE from 'https://unpkg.com/three@0.162.0/build/three.module.js';
+import * as THREE from 'three';
 import { Track } from './modules/Track.js';
 import { Cart } from './modules/Cart.js';
 import { Environment } from './modules/Environment.js';

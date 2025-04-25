@@ -1,5 +1,5 @@
 // Import p5.js from CDN for production, local for development
-import p5 from 'https://unpkg.com/p5@1.11.5/lib/p5.min.js';
+import p5 from 'p5';
 
 export class UI {
     constructor(cart) {
