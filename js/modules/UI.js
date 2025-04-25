@@ -1,4 +1,4 @@
-import p5 from '/node_modules/p5/lib/p5.min.js';
+import p5 from 'p5';
 
 export class UI {
     constructor(cart) {

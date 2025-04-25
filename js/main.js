@@ -1,4 +1,4 @@
-import * as THREE from '/node_modules/three/build/three.module.js';
+import * as THREE from 'three';
 import { Track } from './modules/Track.js';
 import { Cart } from './modules/Cart.js';
 import { Environment } from './modules/Environment.js';
