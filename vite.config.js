@@ -12,19 +12,17 @@ export default defineConfig({
       },
       output: {
         manualChunks: {
-          'three': ['three'],
-          'p5': ['p5']
+          'three': ['three']
         }
       }
     }
   },
   optimizeDeps: {
-    include: ['three', 'p5']
+    include: ['three']
   },
   resolve: {
     alias: {
-      'three': 'three',
-      'p5': 'p5'
+      'three': 'three'
     }
   },
   server: {

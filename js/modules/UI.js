@@ -1,6 +1,3 @@
-// Import p5.js from CDN for production, local for development
-import p5 from 'p5';
-
 export class UI {
     constructor(cart) {
         this.cart = cart;
