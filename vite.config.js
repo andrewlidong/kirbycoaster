@@ -1,17 +1,14 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/roller_coaster/', // Replace with your repository name
+  base: './',  // Changed from '/roller_coaster/' to './' for better path resolution
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
-    rollupOptions: {
-      external: ['three'],
-    }
   },
   resolve: {
     alias: {
-      'three': '/node_modules/three/build/three.module.js'
+      'three': 'three'
     }
   },
   server: {

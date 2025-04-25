@@ -25,6 +25,22 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
+      - name: Update Vite Config for GH Pages
+        run: |
+          echo "import { defineConfig } from 'vite';
+          export default defineConfig({
+            base: '/roller_coaster/',
+            build: {
+              outDir: 'dist',
+              assetsDir: 'assets',
+            },
+            resolve: {
+              alias: {
+                'three': 'three'
+              }
+            }
+          });" > vite.config.js
+
       - name: Build
         run: npm run build
 
